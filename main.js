@@ -67,7 +67,8 @@ function s3instance(accessKey, secretKey) {
             s3Signature:signature.digest("base64"),
             s3Key:accessKey,
             acl:acl,
-            mime:mime.lookup(key)
+            mime:mime.lookup(key),
+            meta:meta
         };
         if (cb) {
             cb(s3Credentials);
