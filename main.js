@@ -38,7 +38,7 @@ function s3instance(accessKey, secretKey) {
         }
     };
 
-    this.writePolicy = function(key, bucket, duration, filesize, acl, cb) {
+    this.writePolicy = function(key, bucket, duration, filesize, acl, meta, cb) {
         var dateObj = new Date;
         var dateExp = new Date(dateObj.getTime() + duration * 1000);
         var policy = {
@@ -51,6 +51,12 @@ function s3instance(accessKey, secretKey) {
                 ["starts-with","$Content-Type",""]
             ]
         };
+        
+        if(typeof meta !== 'undefined') {
+            if(typeof meta.success_action_redirect !== 'undefined') {
+                policy['conditions']['success_action_redirect'] = meta.success_action_redirect;
+            }
+        }
 
         var policyString = JSON.stringify(policy);
         var policyBase64 = new Buffer(policyString).toString('base64');
