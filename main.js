@@ -54,7 +54,7 @@ function s3instance(accessKey, secretKey) {
         
         if(typeof meta !== 'undefined') {
             if(typeof meta.success_action_redirect !== 'undefined') {
-                policy['conditions']['success_action_redirect'] = meta.success_action_redirect;
+                policy['conditions'].push( {'success_action_redirect': meta.success_action_redirect} );
             }
         }
 
