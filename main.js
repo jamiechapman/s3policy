@@ -48,7 +48,7 @@ function s3instance(accessKey, secretKey) {
                 ["starts-with","$key","uploads/"],
                 { "acl":acl },
                 ["content-length-range", 0, filesize * 1000000],
-                ["starts-with","$Content-Type",""]
+                ["starts-with","$Content-Type","image/"]
             ]
         };
         
